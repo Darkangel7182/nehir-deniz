@@ -12,13 +12,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const songList = [
         'die_with_a_smile.mp3',
         'ventanni.mp3',
-        'leave_a_light_on.mp3'
-        'falling_down.mp3'
-        'show_me_love.mp3'
+        'leave_a_light_on.mp3',
+        'falling_down.mp3',
+        'show_me_love.mp3',
         'salvatore.mp3'
-        // Örnek: 'music/mutlu-gunler.mp3',
-        // Örnek: 'music/bizim-sarkimiz.mp3'
-        // İstediğiniz kadar şarkı ekleyebilirsiniz.
     ];
 
     // 2. Mevcut şarkının sırasını takip etmek için bir değişken
