@@ -1,12 +1,3 @@
-body, html {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    font-family: 'Arial', sans-serif; /* Ya da beğendiğiniz başka bir font */
-    overflow: hidden; /* Kaydırma çubuklarını başlangıçta gizle */
-}
-
 #splash-screen {
     width: 100%;
     height: 100%;
@@ -14,36 +5,22 @@ body, html {
     justify-content: center;
     align-items: center;
     text-align: center;
-    background-color: #FFC0CB; /* Pembe renk */
-    /* Arka plana büyük bir kalp eklemek isterseniz:
-    background-image: url('path/to/your/heart-image.svg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain; /* veya cover, istediğiniz görünüme göre */
-    */
-    position: fixed; /* Diğer içeriklerin üzerinde kalması için */
+    /* background-color: #FFC0CB; */ /* Kaldırıldı veya yorum yapıldı */
+    background-image: url('background.jpg'); /* Kendi resminizin adını buraya yazın (örneğin: heart-bg.png) */
+    background-repeat: no-repeat; /* Resmin tekrar etmesini engeller */
+    background-position: center; /* Resmi ortalar */
+    background-size: cover; /* Resmi tüm alanı kaplayacak şekilde ölçeklendirir (en boy oranını koruyarak) */
+    position: fixed;
     top: 0;
     left: 0;
-    z-index: 1000; /* Diğer elementlerden önde olması için */
-    transition: opacity 0.5s ease-out; /* Yumuşak kaybolma efekti için */
+    z-index: 1000;
+    transition: opacity 0.5s ease-out;
 }
 
-#splash-screen .content {
-    /* İçerik için özel stiller (gerekirse) */
-}
-
-#splash-screen h1 {
-    font-size: 3em; /* İstediğiniz boyuta ayarlayın */
-    color: #fff; /* Beyaz renk, pembe arka plana karşı iyi durur */
-    margin-bottom: 0.5em;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Metne gölge */
-}
-
-#splash-screen h2 {
-    font-size: 1.8em;
-    color: #f8f8f8;
-    margin-bottom: 1.5em;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+/* .content div'ini ve içindeki h1, h2 stillerini kaldırabilirsiniz */
+#splash-screen .content h1,
+#splash-screen .content h2 {
+    display: none; /* Ya da silebilirsiniz */
 }
 
 #splash-screen button {
@@ -61,17 +38,4 @@ body, html {
 #splash-screen button:hover {
     background-color: #f0f0f0; /* Buton üzerine gelince hafif renk değişimi */
     color: #E75480; /* Koyu pembe */
-}
-
-/* Ana site görünür olduğunda splash screen'i gizle */
-#splash-screen.hidden {
-    opacity: 0;
-    pointer-events: none; /* Gizlendikten sonra tıklama olaylarını engelle */
-}
-
-
-#main-site {
-    /* Ana site için temel stiller (şimdilik boş bırakılabilir) */
-    padding: 20px;
-    text-align: center;
 }
