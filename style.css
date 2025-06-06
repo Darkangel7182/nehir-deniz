@@ -6,7 +6,7 @@
     align-items: center;
     text-align: center;
     /* background-color: #FFC0CB; */ /* Kaldırıldı veya yorum yapıldı */
-    background-image: url('background.jpg'); /* Kendi resminizin adını buraya yazın (örneğin: heart-bg.png) */
+    background-image: url('bg.png'); /* Kendi resminizin adını buraya yazın (örneğin: heart-bg.png) */
     background-repeat: no-repeat; /* Resmin tekrar etmesini engeller */
     background-position: center; /* Resmi ortalar */
     background-size: cover; /* Resmi tüm alanı kaplayacak şekilde ölçeklendirir (en boy oranını koruyarak) */
