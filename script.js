@@ -1,16 +1,14 @@
 document.addEventListener('DOMContentLoaded', function() {
     
     // =================================================================
-    // ESKİ KODUNUZ (Karşılama Ekranı ve Müzik Listesi) - DOKUNMAYIN
+    // Karşılama Ekranı ve Müzik Listesi Bölümü
     // =================================================================
 
-    // Gerekli HTML elementlerini seçiyoruz
     const startButton = document.getElementById('startButton');
     const splashScreen = document.getElementById('splash-screen');
     const mainSite = document.getElementById('main-site');
     const backgroundMusic = document.getElementById('backgroundMusic');
 
-    // --- PLAYLIST AYARLARI ---
     const songList = [
         'music/die_with_a_smile.mp3',
         'music/falling_down.mp3',
@@ -18,11 +16,9 @@ document.addEventListener('DOMContentLoaded', function() {
         'music/leave_a_light_on.mp3',
         'music/show_me_love.mp3',
         'music/ventanni.mp3'
-        // Kendi şarkı listeniz burada kalmalı
     ];
     let currentSongIndex = 0;
 
-    // Sıradaki şarkıyı çalan fonksiyon
     function playCurrentSong() {
         if (songList.length > 0) {
             backgroundMusic.src = songList[currentSongIndex];
@@ -32,7 +28,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Bir şarkı bittiğinde ne olacağını belirleyen olay dinleyici
     backgroundMusic.addEventListener('ended', function() {
         currentSongIndex++;
         if (currentSongIndex >= songList.length) {
@@ -41,7 +36,6 @@ document.addEventListener('DOMContentLoaded', function() {
         playCurrentSong();
     });
 
-    // "Hazır Mısın?" butonuna tıklanınca ne olacağı
     startButton.addEventListener('click', function() {
         splashScreen.classList.add('hidden');
         setTimeout(function() {
@@ -52,34 +46,34 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 500);
     });
 
-
     // =================================================================
-    // YENİ EKLENECEK KOD (Ay Butonları Slideshow) - BU BÖLÜM EKLENDİ
+    // Ay Butonları Slideshow Bölümü (GÜÇLENDİRİLMİŞ VERSİYON)
     // =================================================================
 
-    // Sayfadaki tüm ay butonlarını seç
     const allMonthButtons = document.querySelectorAll('.month-button');
 
-    // Her bir buton için slideshow işlemini başlat
     allMonthButtons.forEach(button => {
-        // Butonun 'data-photos' özelliğindeki fotoğraf yollarını alıp bir diziye çevir
-        const photos = button.dataset.photos.split(',').map(s => s.trim());
-        
-        // Butonun ilk arka plan fotoğrafını ayarla
-        if (photos.length > 0 && photos[0]) {
-            button.style.backgroundImage = `url('${photos[0]}')`;
-        }
+        // 'data-photos' özelliğinin var olup olmadığını KONTROL ET
+        const photoData = button.dataset.photos;
 
-        // Eğer butona ait birden fazla fotoğraf varsa, 5 saniyelik slideshow'u başlat
-        if (photos.length > 1) {
-            let currentPhotoIndex = 0;
-            setInterval(() => {
-                // Sıradaki fotoğrafın index'ini hesapla
-                currentPhotoIndex = (currentPhotoIndex + 1) % photos.length;
-                // Butonun arka plan resmini yeni fotoğrafla güncelle
-                button.style.backgroundImage = `url('${photos[currentPhotoIndex]}')`;
-            }, 10000); // 10000 milisaniye = 10 saniye
+        if (photoData && photoData.trim() !== '') { // Eğer photoData varsa ve boş değilse devam et
+            const photos = photoData.split(',').map(s => s.trim());
+            
+            if (photos.length > 0) {
+                button.style.backgroundImage = `url('${photos[0]}')`;
+
+                if (photos.length > 1) {
+                    let currentPhotoIndex = 0;
+                    setInterval(() => {
+                        currentPhotoIndex = (currentPhotoIndex + 1) % photos.length;
+                        button.style.backgroundImage = `url('${photos[currentPhotoIndex]}')`;
+                    }, 10000);
+                }
+            }
+        } else {
+            // Eğer bir butonun data-photos özelliği boş veya yoksa, konsola bir uyarı yazdır.
+            console.warn("Uyarı: Bir butonun 'data-photos' özelliği boş veya eksik.", button);
         }
     });
 
-}); // <-- EN DIŞTAKİ 'DOMContentLoaded' PARANTEZİ, TÜM KOD BUNUN İÇİNDE OLMALI
+});
