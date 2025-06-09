@@ -12,9 +12,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // --- PLAYLIST AYARLARI ---
     const songList = [
-        'music/sarki1.mp3',
-        'music/sarki2.mp3',
-        'music/sarki3.mp3'
+        'music/die_with_a_smile.mp3',
+        'music/falling_down.mp3',
+        'music/salvatore.mp3,
+        'music/leave_a_light_on.mp3',
+        'music/show_me_love.mp3,
+        'music/ventanni.mp3
         // Kendi şarkı listeniz burada kalmalı
     ];
     let currentSongIndex = 0;
@@ -75,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 currentPhotoIndex = (currentPhotoIndex + 1) % photos.length;
                 // Butonun arka plan resmini yeni fotoğrafla güncelle
                 button.style.backgroundImage = `url('${photos[currentPhotoIndex]}')`;
-            }, 5000); // 5000 milisaniye = 5 saniye
+            }, 10000); // 10000 milisaniye = 10 saniye
         }
     });
 
