@@ -13,8 +13,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const songList = [
         'music/die_with_a_smile.mp3',
         'music/falling_down.mp3',
-        'music/salvatore.mp3',
         'music/leave_a_light_on.mp3',
+        'music/salvatore.mp3',
         'music/show_me_love.mp3',
         'music/ventanni.mp3'
     ];
