@@ -1,4 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
+    
+    // =================================================================
+    // ESKİ KODUNUZ (Karşılama Ekranı ve Müzik Listesi) - DOKUNMAYIN
+    // =================================================================
+
     // Gerekli HTML elementlerini seçiyoruz
     const startButton = document.getElementById('startButton');
     const splashScreen = document.getElementById('splash-screen');
@@ -6,67 +11,72 @@ document.addEventListener('DOMContentLoaded', function() {
     const backgroundMusic = document.getElementById('backgroundMusic');
 
     // --- PLAYLIST AYARLARI ---
-
-    // 1. ŞARKI LİSTENİZİ BURAYA YAZIN
-    // Kendi şarkı dosyalarınızın tam yollarını buraya ekleyin.
     const songList = [
-        'die_with_a_smile.mp3',
-        'ventanni.mp3',
-        'leave_a_light_on.mp3',
-        'falling_down.mp3',
-        'show_me_love.mp3',
-        'salvatore.mp3'
+        'music/sarki1.mp3',
+        'music/sarki2.mp3',
+        'music/sarki3.mp3'
+        // Kendi şarkı listeniz burada kalmalı
     ];
-
-    // 2. Mevcut şarkının sırasını takip etmek için bir değişken
     let currentSongIndex = 0;
 
-    // --- FONKSİYONLAR ---
-
-    // 3. Sıradaki şarkıyı çalan fonksiyon
+    // Sıradaki şarkıyı çalan fonksiyon
     function playCurrentSong() {
-        // Listede şarkı varsa devam et
         if (songList.length > 0) {
-            // Audio elementinin kaynağını listedeki mevcut şarkı olarak ayarla
             backgroundMusic.src = songList[currentSongIndex];
-            
-            // Şarkıyı çalmayı dene
             backgroundMusic.play().catch(error => {
                 console.error("Hata: Müzik çalınamadı.", error);
             });
         }
     }
 
-    // --- OLAY DİNLEYİCİLER (EVENTS) ---
-
-    // 4. Bir şarkı bittiğinde ne olacağını belirleyen olay dinleyici
+    // Bir şarkı bittiğinde ne olacağını belirleyen olay dinleyici
     backgroundMusic.addEventListener('ended', function() {
-        console.log("Şarkı bitti, bir sonrakine geçiliyor...");
-        // Sıradaki şarkıya geç
         currentSongIndex++;
-        
-        // Eğer liste bittiyse, en başa geri dön (playlist döngüsü)
         if (currentSongIndex >= songList.length) {
             currentSongIndex = 0;
         }
-        
-        // Yeni şarkıyı çal
         playCurrentSong();
     });
 
-    // 5. "Hazır Mısın?" butonuna tıklanınca ne olacağı
+    // "Hazır Mısın?" butonuna tıklanınca ne olacağı
     startButton.addEventListener('click', function() {
-        // Karşılama ekranını gizle
         splashScreen.classList.add('hidden');
-        
         setTimeout(function() {
             splashScreen.style.display = 'none';
             mainSite.style.display = 'block';
             document.body.style.overflow = 'auto';
-
-            // Playlist'i ilk şarkıdan başlat
             playCurrentSong();
-
         }, 500);
     });
-});
+
+
+    // =================================================================
+    // YENİ EKLENECEK KOD (Ay Butonları Slideshow) - BU BÖLÜM EKLENDİ
+    // =================================================================
+
+    // Sayfadaki tüm ay butonlarını seç
+    const allMonthButtons = document.querySelectorAll('.month-button');
+
+    // Her bir buton için slideshow işlemini başlat
+    allMonthButtons.forEach(button => {
+        // Butonun 'data-photos' özelliğindeki fotoğraf yollarını alıp bir diziye çevir
+        const photos = button.dataset.photos.split(',').map(s => s.trim());
+        
+        // Butonun ilk arka plan fotoğrafını ayarla
+        if (photos.length > 0 && photos[0]) {
+            button.style.backgroundImage = `url('${photos[0]}')`;
+        }
+
+        // Eğer butona ait birden fazla fotoğraf varsa, 5 saniyelik slideshow'u başlat
+        if (photos.length > 1) {
+            let currentPhotoIndex = 0;
+            setInterval(() => {
+                // Sıradaki fotoğrafın index'ini hesapla
+                currentPhotoIndex = (currentPhotoIndex + 1) % photos.length;
+                // Butonun arka plan resmini yeni fotoğrafla güncelle
+                button.style.backgroundImage = `url('${photos[currentPhotoIndex]}')`;
+            }, 5000); // 5000 milisaniye = 5 saniye
+        }
+    });
+
+}); // <-- EN DIŞTAKİ 'DOMContentLoaded' PARANTEZİ, TÜM KOD BUNUN İÇİNDE OLMALI
