@@ -11,9 +11,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Lütfen bu şarkı listesinin kendi dosyalarınızla eşleştiğinden emin olun.
     const songList = [
-        'music/sarki1.mp3',
-        'music/sarki2.mp3',
-        'music/sarki3.mp3'
+        'music/die_with_a_smile.mp3',
+        'music/falling_down.mp3',
+        'music/salvatore.mp3',
+        'music/leave_a_light_on.mp3',
+        'music/show_me_love.mp3',
+        'music/ventanni.mp3'
     ];
     let currentSongIndex = 0;
 
